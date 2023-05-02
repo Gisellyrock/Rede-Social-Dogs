@@ -19,14 +19,13 @@ const UserHeaderNav = () => {
       </NavLink>
       <NavLink to="/conta/estatisticas">
         <Estatisticas />
-        {mobile && 'Estatísticas'}
+        {mobile && 'Estatisticas'}
       </NavLink>
       <NavLink to="/conta/postar">
         <AdicionarFoto />
         {mobile && 'Adicionar Foto'}
       </NavLink>
       <button onClick={userLogout}>
-        {''}
         <Sair />
         {mobile && 'Sair'}
       </button>
