@@ -11,7 +11,7 @@ const UserPhotoPost = () => {
   const peso = useForm('number');
   const idade = useForm('number');
   const [img, setImg] = React.useState({});
-  const { data, error, loading, request } = useFetch;
+  const { data, error, loading, request } = useFetch();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -28,6 +28,7 @@ const UserPhotoPost = () => {
 
   function handleImgChange({ target }) {
     setImg({
+      preview: URL.createObjectURL(target.files[0]),
       raw: target.files[0],
     });
   }
@@ -38,9 +39,23 @@ const UserPhotoPost = () => {
         <Input label="Nome" type="text" name="nome" {...nome} />
         <Input label="Peso" type="number" name="peso" {...peso} />
         <Input label="Idade" type="number" name="idade" {...idade} />
-        <input type="file" name="img" id="img" onChange={handleImgChange} />
+        <input
+          className={styles.file}
+          type="file"
+          name="img"
+          id="img"
+          onChange={handleImgChange}
+        />
         <Button>Enviar</Button>
       </form>
+      <div>
+        {img.preview && (
+          <div
+            className={styles.preview}
+            style={{ backgroundImage: `ur('{img.preview}')` }}
+          ></div>
+        )}
+      </div>
     </section>
   );
 };
