@@ -1,18 +1,17 @@
 import React from 'react';
 import styles from './PhotoContent.module.css';
 import { Link } from 'react-router-dom';
-import PhotoComents from './PhotoComents';
+import PhotoComments from './PhotoComments';
 
 const PhotoContent = ({ data }) => {
-  console.log(data);
-  const { photo, coments } = data;
+  const { photo, comments } = data;
   return (
     <div className={styles.photo}>
       <div className={styles.img}>
         <img src={photo.src} alt={photo.title} />
         <div className={styles.details}>
           <div>
-            <p>
+            <p className={styles.author}>
               <Link to={`/perfil/${photo.author}`}>@{photo.author}</Link>
               <span className={styles.visualizacoes}>{photo.acessos}</span>
             </p>
@@ -26,7 +25,7 @@ const PhotoContent = ({ data }) => {
           </div>
         </div>
       </div>
-      <PhotoComents id={photo.id} coments={coments} />
+      <PhotoComments id={photo.id} comments={comments} />
     </div>
   );
 };
